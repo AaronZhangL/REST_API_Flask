@@ -28,6 +28,22 @@ def create_database(db_path):
                          )
     cursor.execute(create_store_table)
 
+    # Add by Aaron.Z
+    create_store_table = '{}{}{}{}{}{}{}{}{}'.format(
+                         'CREATE TABLE az_example_01(',
+			 ' id INTEGER PRIMARY KEY,',
+			 ' date TEXT,',
+		         ' time TEXT,',
+		         '  people TEXT,',
+			 ' firstname TEXT,',
+			 ' lastname TEXT,',
+			 ' telnumber TEXT,',
+			 ' created_datetime TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')));'
+			 )
+    cursor.execute(create_store_table)
+    cursor.execute('INSERT INTO az_example_01 (date, time, people) VALUES(datetime("now", "localtime"),datetime("now", "localtime"), 3);')
+
+
     cursor.execute('INSERT OR REPLACE INTO user VALUES(1, "test_1", "qwert");')
     cursor.execute('INSERT OR REPLACE INTO user VALUES(2, "test_2", "qwaszx");')
     cursor.execute('INSERT OR REPLACE INTO user VALUES(3, "test_3", "zxasqw");')
