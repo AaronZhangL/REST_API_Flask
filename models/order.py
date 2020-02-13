@@ -1,6 +1,4 @@
 import sqlite3
-from models.user import UserModel
-from models.purchase_history import PurchaseHistoryModel
 
 
 class OrderModel:
@@ -9,10 +7,10 @@ class OrderModel:
         self.id = id
         self.firstname = firstname
         self.lastname = lastname
-	self.people = people
-	self.firstname = firstname
-	self.lastname = lastname
-	self.telnumber = telnumber
+        self.people = people
+        self.firstname = firstname
+        self.lastname = lastname
+        self.telnumber = telnumber
 
     @classmethod
     def find_by_firstname(cls, firstname):
@@ -24,7 +22,23 @@ class OrderModel:
         rows = result.fetchall()
         if rows:
             for row in rows:
-                orders.append(OrderModel(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                orders.append(OrderModel(
+                    row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+            return orders
+        connection.close()
+
+    @classmethod
+    def find_by_telnumber(cls, telnumber):
+        orders = list()
+        connection = sqlite3.connect('./db/datashop.db')
+        cursor = connection.cursor()
+        query = 'SELECT id, date(date), time(time), people, firstname, lastname, telnumber FROM az_example_01 WHERE telnumber=?;'
+        result = cursor.execute(query, (orders,))
+        rows = result.fetchall()
+        if rows:
+            for row in rows:
+                orders.append(OrderModel(
+                    row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
             return orders
         connection.close()
 
@@ -38,7 +52,8 @@ class OrderModel:
         rows = result.fetchall()
         if rows:
             for row in rows:
-                orders.append(OrderModel(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                orders.append(OrderModel(
+                    row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
             return orders
         connection.close()
 
@@ -50,7 +65,18 @@ class OrderModel:
         result = cursor.execute(query, (firstname, lastname,))
         connection.commit()
         connection.close()
+        return result
 
+    @classmethod
+    def add_order(self, date, time, people, firstname, lastname, telnumber):
+        connection = sqlite3.connect('./db/datashop.db')
+        cursor = connection.cursor()
+        query = 'INSERT INTO az_example_01 (date, time, people, firstname, lastname, telnumber) VALUES(?,?,?,?,?,?);'
+        result = cursor.execute(
+            query, (date, time, people, firstname, lastname, telnumber,))
+        connection.commit()
+        connection.close()
+        return result
 
     @classmethod
     def update_datetime_by_telnumber(self, date, time, telnumber):
@@ -60,6 +86,7 @@ class OrderModel:
         result = cursor.execute(query, (date, time, telnumber,))
         connection.commit()
         connection.close()
+        return result
 
     @classmethod
     def update_people_by_telnumber(self, people, telnumber):
@@ -69,20 +96,20 @@ class OrderModel:
         result = cursor.execute(query, (people, telnumber,))
         connection.commit()
         connection.close()
-
+        return result
 
     def json(self):
         return {'id': self.id,
-        'date': self.date,
-        'time': self.time,
-	'people': self.people,
-	'firstname': self.firstname,
-	'lastname': self.lastname,
-	'telnumber': self.telnumber
-        }
+                'date': self.date,
+                'time': self.time,
+                'people': self.people,
+                'firstname': self.firstname,
+                'lastname': self.lastname,
+                'telnumber': self.telnumber
+                }
 
 
-#class ShoppingStore:
+# class ShoppingStore:
 
 #    # def __init__(id, product, user_id, product_id):
 #    #     self.id = id
