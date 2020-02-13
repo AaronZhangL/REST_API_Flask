@@ -23,7 +23,7 @@ api.add_resource(PurchaseHistory, '/history/<string:name>')
 api.add_resource(Shopping, '/shopping')
 
 api.add_resource(OrderList, '/orders')
-api.add_resource(Order, '/orders/<string:telnumber>')
+api.add_resource(Order, '/order/<string:telnumber>')
 
 
 @app.errorhandler(JWTError)
@@ -34,4 +34,4 @@ def auth_error_handler(err):
 if __name__ == '__main__':
 
     # create_database('./db/datashop.db')
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)

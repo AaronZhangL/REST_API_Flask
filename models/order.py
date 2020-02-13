@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 
 class OrderModel:
@@ -18,7 +19,7 @@ class OrderModel:
         connection = sqlite3.connect('./db/datashop.db')
         cursor = connection.cursor()
         query = 'SELECT id, date(date), time(time), people, firstname, lastname, telnumber FROM az_example_01 WHERE firstname=?;'
-        result = cursor.execute(query, (orders,))
+        result = cursor.execute(query, (firstname,))
         rows = result.fetchall()
         if rows:
             for row in rows:
@@ -38,7 +39,7 @@ class OrderModel:
         if rows:
             for row in rows:
                 orders.append(OrderModel(
-                    row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                    row[0], row[1], row[2], row[3], str(row[4]), str(row[5]), row[6]))
             return orders
         connection.close()
 
