@@ -1,6 +1,7 @@
 from models.order import OrderModel
 from flask_restful import Resource, reqparse
-
+from flask import Flask
+app = Flask(__name__)
 
 class Order(Resource):
 
@@ -22,23 +23,23 @@ class Order(Resource):
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('time',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('people',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('firstname',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('lastname',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('telnumber',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
 
@@ -54,6 +55,8 @@ class OrderList(Resource):
 
     def get(self):
         orders = OrderModel.find_all_orders()
+        app.logger.debug("--AZ-001--")
+        app.logger.debug(orders)
         if orders:
             return {'orders': [order.json() for order in orders]}, 200
         else:
