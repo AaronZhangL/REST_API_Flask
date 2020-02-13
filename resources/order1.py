@@ -4,6 +4,19 @@ from flask import Flask
 app = Flask(__name__)
 
 
+class OrderId(Resource):
+    '''
+    Get Id column
+    '''
+
+    def get(self, telnumber):
+        orders = Order1Model.find_by_telnumber(telnumber)
+        if orders:
+            return orders[0].getId(), 200
+        else:
+            return{'message': 'Order not found!'}, 404
+
+
 class OrderDate(Resource):
     '''
     Insert/Update Date column

@@ -8,7 +8,7 @@ from security import authenticate, identity
 from flask_jwt import JWT, jwt_required, JWTError
 
 from resources.order import OrderList, Order
-from resources.order1 import OrderDate, OrderTelnumber
+from resources.order1 import OrderDate, OrderTelnumber, OrderId
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,6 +26,7 @@ api.add_resource(Shopping, '/shopping')
 api.add_resource(OrderList, '/orders')
 api.add_resource(Order, '/order/<string:telnumber>')
 
+api.add_resource(OrderId, '/orderid/<string:telnumber>')
 api.add_resource(OrderDate, '/orderdate/<string:telnumber>')
 api.add_resource(OrderTelnumber, '/ordertelnumber/<string:telnumber>')
 
