@@ -26,7 +26,7 @@ api.add_resource(Shopping, '/shopping')
 api.add_resource(OrderList, '/orders')
 api.add_resource(Order, '/order/<string:telnumber>')
 
-api.add_resource(OrderDate, '/orderdate/<string:date>')
+api.add_resource(OrderDate, '/orderdate/<string:telnumber>')
 api.add_resource(OrderTelnumber, '/ordertelnumber/<string:telnumber>')
 
 

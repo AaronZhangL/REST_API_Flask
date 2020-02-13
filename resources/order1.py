@@ -10,9 +10,9 @@ class OrderDate(Resource):
     '''
 
     def get(self, telnumber):
-        order = Order1Model.find_by_telnumber(telnumber)
-        if order:
-            return order.getDate(), 200
+        orders = Order1Model.find_by_telnumber(telnumber)
+        if orders:
+            return orders[0].getDate(), 200
         else:
             return{'message': 'Order not found!'}, 404
 
@@ -44,9 +44,9 @@ class OrderTelnumber(Resource):
     '''
 
     def get(self, telnumber):
-        order = Order1Model.find_by_telnumber(telnumber)
-        if order:
-            return order.getTelnumber(), 200
+        orders = Order1Model.find_by_telnumber(telnumber)
+        if orders:
+            return orders[0].getTelnumber(), 200
         else:
             return{'message': 'Order not found!'}, 404
 

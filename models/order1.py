@@ -24,7 +24,7 @@ class Order1Model:
         if rows:
             for row in rows:
                 orders.append(Order1Model(
-                    row[0], row[1], row[2], row[3], str(row[4]), str(row[5]), row[6]))
+                    row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
             return orders
         connection.close()
 
@@ -164,3 +164,4 @@ class Order1Model:
 
     def getTelnumber(self):
         return self.telnumber
+
