@@ -29,7 +29,7 @@ class OrderDate(Resource):
         else:
             return{'message': 'Order not found!'}, 404
 
-    def post(self, date, telnumber):
+    def post(self, telnumber):
         order = Order1Model.find_by_telnumber(telnumber)
         if order:
             return {'message': 'Order already in database!'}
