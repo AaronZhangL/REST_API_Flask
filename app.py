@@ -26,4 +26,4 @@ def auth_error_handler(err):
 
 if __name__ == '__main__':
     # create_database('./db/datashop.db')
-    app.run()
+    app.run(debug=False, host='0.0.0.0', port=5000)
