@@ -41,7 +41,7 @@ def create_database(db_path):
 			 ' created_datetime TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')));'
 			 )
     cursor.execute(create_store_table)
-    cursor.execute('INSERT INTO az_example_01 (date, time, people) VALUES(datetime("now", "localtime"),datetime("now", "localtime"), 3);')
+    cursor.execute('INSERT INTO az_example_01 (date, time, people, firstname, lastname, telnumber) VALUES(datetime("now", "localtime"),datetime("now", "localtime"), 3, "中村", "健一", "09091041234");')
 
 
     cursor.execute('INSERT OR REPLACE INTO user VALUES(1, "test_1", "qwert");')
