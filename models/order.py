@@ -33,7 +33,7 @@ class OrderModel:
         connection = sqlite3.connect('./db/datashop.db')
         cursor = connection.cursor()
         query = 'SELECT id, date(date), time(time), people, firstname, lastname, telnumber FROM az_example_01 WHERE telnumber=?;'
-        result = cursor.execute(query, (orders,))
+        result = cursor.execute(query, (telnumber,))
         rows = result.fetchall()
         if rows:
             for row in rows:
