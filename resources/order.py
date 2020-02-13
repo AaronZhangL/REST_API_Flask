@@ -22,23 +22,23 @@ class Order(Resource):
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('time',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('people',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('firstname',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('lastname',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
             parser.add_argument('telnumber',
-                                type=float,
+                                type=str,
                                 required=True,
                                 help='This field is mandatory!')
 
