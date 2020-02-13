@@ -28,6 +28,7 @@ api.add_resource(Order, '/order/<string:telnumber>')
 
 api.add_resource(OrderId, '/orderid/<string:telnumber>')
 api.add_resource(OrderDate, '/orderdate/<string:telnumber>')
+api.add_resource(OrderDate, '/orderdate', methods=['GET', 'POST'])
 api.add_resource(OrderTelnumber, '/ordertelnumber/<string:telnumber>')
 
 
