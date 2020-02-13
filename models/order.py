@@ -5,8 +5,8 @@ class OrderModel:
 
     def __init__(self, id, date, time, people, firstname, lastname, telnumber):
         self.id = id
-        self.firstname = firstname
-        self.lastname = lastname
+        self.date = date
+        self.time = time
         self.people = people
         self.firstname = firstname
         self.lastname = lastname
