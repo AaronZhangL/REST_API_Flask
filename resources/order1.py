@@ -34,24 +34,30 @@ class OrderDate(Resource):
         app.logger.debug("--aaron debug--")
         app.logger.debug(telnumber)
         app.logger.debug(order)
+
+        # get request parameters
+        parser = reqparse.RequestParser()
+        parser.add_argument('date',
+                            type=str,
+                            required=True,
+                            help='This field is mandatory!')
+        parser.add_argument('telnumber',
+                            type=str,
+                            required=True,
+                            help='This field is mandatory!')
+
+        data_payload = parser.parse_args()
+
         if order:
-            return {'message': 'Order already in database!'}
+            # Update
+            Order1Model.update_date_by_telnumber(
+                data_payload['date'], data_payload['telnumber'])
+            return {'message': 'Date successfully updated to database!'}, 200
         else:
-            parser = reqparse.RequestParser()
-            parser.add_argument('date',
-                                type=str,
-                                required=True,
-                                help='This field is mandatory!')
-            parser.add_argument('telnumber',
-                                type=str,
-                                required=True,
-                                help='This field is mandatory!')
-
-            data_payload = parser.parse_args()
-
+            # Insert
             Order1Model.add_date_by_telnumber(
                 data_payload['date'], data_payload['telnumber'])
-            return {'message': 'Order successfully added to database!'}, 201
+            return {'message': 'Order(Date) successfully added to database!'}, 200
 
 
 class OrderTelnumber(Resource):
