@@ -31,6 +31,9 @@ class OrderDate(Resource):
 
     def post(self, telnumber):
         order = Order1Model.find_by_telnumber(telnumber)
+        app.logger.debug("--aaron debug--")
+        app.logger.debug(telnumber)
+        app.logger.debug(order)
         if order:
             return {'message': 'Order already in database!'}
         else:
